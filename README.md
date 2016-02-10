@@ -1,2 +1,3 @@
-# HashCode2016-qualificationround
+# HashCode2016
+
 HashCode 2016
