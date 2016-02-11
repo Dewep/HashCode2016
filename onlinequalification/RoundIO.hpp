@@ -4,13 +4,7 @@
 #include <iostream>
 #include <string>
 #include <list>
-
-struct Drone {
-    int id;
-    int row;
-    int column;
-    int available;
-};
+#include "drone.hpp"
 
 struct Product {
     int id;
@@ -23,13 +17,6 @@ struct Warehouse {
     int *nb_products;
 };
 
-struct Order {
-    int row;
-    int column;
-    int nb_items;
-    int *items;
-    int available;
-};
 
 struct RoundIO {
     int nb_rows;
