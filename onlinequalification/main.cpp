@@ -14,7 +14,18 @@ int main() {
     std::cerr << "nb_products: " << round_io.nb_products << std::endl;
     std::cerr << "nb_warehouses: " << round_io.nb_warehouses << std::endl;
     std::cerr << "nb_orders: " << round_io.nb_orders << std::endl;
-    for (int p = 0; p < round_io.nb_products; p++) {
+
+
+    for (int turn = 0; turn < round_io.nb_turns; turn++)
+    {
+        for (int drone = 0; drone < round_io.nb_turns; drone++)
+        {
+            //round_io.drones[drone]
+            
+        }
+    }
+
+    /*for (int p = 0; p < round_io.nb_products; p++) {
         std::cerr << "product: " << round_io.products[p].id << " " << round_io.products[p].weight << std::endl;
     }
     for (int w = 0; w < round_io.nb_warehouses; w++) {
@@ -28,7 +39,7 @@ int main() {
         for (int oi = 0; oi < round_io.orders[o].nb_items; oi++) {
             std::cerr << "order_product: " << round_io.orders[o].items[oi] << std::endl;
         }
-    }
+    }*/
 
     //round_io.addXXXXXXXXXX(1, 2, 3);
 
