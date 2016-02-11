@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include <string>
-#include <list>
+#include "Warehouse.hpp"
 
 struct Drone {
     int id;
@@ -15,12 +15,6 @@ struct Drone {
 struct Product {
     int id;
     int weight;
-};
-
-struct Warehouse {
-    int row;
-    int column;
-    int *nb_products;
 };
 
 struct Order {
