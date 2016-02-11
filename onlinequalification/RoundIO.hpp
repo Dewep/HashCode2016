@@ -75,4 +75,6 @@ struct RoundIO {
     }
 };
 
+extern RoundIO round_io;
+
 #endif /* !ROUND_IO_HPP_ */
