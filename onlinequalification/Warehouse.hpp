@@ -9,6 +9,7 @@
 #include "Product.hpp"
 
 struct Warehouse {
+    int id;
     int row;
     int column;
     int *nb_products;

@@ -43,6 +43,7 @@ struct RoundIO {
         std::cin >> nb_warehouses;
         warehouses = new Warehouse[nb_warehouses];
         for (int w = 0; w < nb_warehouses; w++) {
+            warehouses[w].id = w;
             std::cin >> warehouses[w].row;
             std::cin >> warehouses[w].column;
             warehouses[w].nb_products = new int[nb_products];

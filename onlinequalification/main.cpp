@@ -11,10 +11,69 @@ RoundIO round_io;
 
 //std::list<warehouse> find_warehouse()
 
+int distance(int r1, int c1, int r2, int c2);
+int calc_nb_turn(int distance_to_go);
+
 int main(int argc, char **argv) {
     // Usage: ./hashcode2016 busy_day < data/file.in
     std::ios::sync_with_stdio(false);
 
+    Solution s;
+    for (int d = 0; d < round_io.nb_drones; d++) {
+        int t = round_io.nb_turns;
+        for (int o = 0; o < round_io.nb_orders; o++) {
+            for (int io = 0; io < round_io.orders[o].nb_items; io++) {
+                if (round_io.orders[o].items[io] != -1) {
+                    std::vector<Warehouse> whs = BestWarehouses(round_io.orders[o], round_io.warehouses, round_io.nb_warehouses, &round_io.drones[d].row, &round_io.drones[d].column);
+                    for (auto wh: whs)
+                    {
+                        int w = wh.id;
+                        //std::cout << "wharehouse r(" << w.row << "), c(" << w.column << ")" << std::endl;
+                    //}
+                    //for (int w = 0; w < round_io.nb_warehouses; w++) {
+                        if (round_io.warehouses[w].nb_products[round_io.orders[o].items[io]] > 0) {
+                            int t_count = calc_nb_turn(distance(round_io.drones[d].row, round_io.drones[d].column, round_io.warehouses[w].row, round_io.warehouses[w].column));
+                            t_count += calc_nb_turn(distance(round_io.warehouses[w].row, round_io.warehouses[w].column, round_io.orders[o].row, round_io.orders[o].column));
+                            t_count += 5;
+                            if (t > t_count) {
+                                int number = 1;
+                                if (round_io.warehouses[w].nb_products[round_io.orders[o].items[io]] > 1) {
+                                    if (round_io.products[round_io.orders[o].items[io]].weight * 2 < round_io.nb_max_payload) {
+                                        for (int io2 = io + 1; io2 < round_io.orders[o].nb_items; io2++) {
+                                            if (round_io.orders[o].items[io] == round_io.orders[o].items[io2]) {
+                                                number++;
+                                                round_io.orders[o].items[io2] = -1;
+                                                if (round_io.warehouses[w].nb_products[round_io.orders[o].items[io]] > 2) {
+                                                    if (round_io.products[round_io.orders[o].items[io]].weight * 3 < round_io.nb_max_payload) {
+                                                        for (int io3 = io2 + 1; io3 < round_io.orders[o].nb_items; io3++) {
+                                                            if (round_io.orders[o].items[io] == round_io.orders[o].items[io3]) {
+                                                                number++;
+                                                                round_io.orders[o].items[io3] = -1;
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                s.load(d, w, round_io.orders[o].items[io], number);
+                                s.deliver(d, o, round_io.orders[o].items[io], number);
+                                round_io.drones[d].row = round_io.orders[o].row;
+                                round_io.drones[d].column = round_io.orders[o].column;
+                                t -= t_count;
+                                round_io.warehouses[w].nb_products[round_io.orders[o].items[io]] -= number;
+                                round_io.orders[o].items[io] = -1;
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    s.save(argc, argv);
+    return 0;
 
     std::cerr << "nb_rows: " << round_io.nb_rows << std::endl;
     std::cerr << "nb_columns: " << round_io.nb_columns << std::endl;
@@ -39,7 +98,6 @@ int main(int argc, char **argv) {
     {
         std::cout << "wharehouse r(" << w.row << "), c(" << w.column << ")" << std::endl;
     }
-
 
     return 0;
 
@@ -89,7 +147,7 @@ int main(int argc, char **argv) {
             }
 
             //round_io.drones[drone]
-            
+
         }
     }
 */
