@@ -4,25 +4,11 @@
 #include <iostream>
 #include <string>
 #include "Warehouse.hpp"
-
-struct Drone {
-    int id;
-    int row;
-    int column;
-    int available;
-};
+#include "drone.hpp"
 
 struct Product {
     int id;
     int weight;
-};
-
-struct Order {
-    int row;
-    int column;
-    int nb_items;
-    int *items;
-    int available;
 };
 
 struct RoundIO {
