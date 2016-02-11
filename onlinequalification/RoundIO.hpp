@@ -6,6 +6,12 @@
 #include <string>
 #include <sstream>
 
+struct Drone {
+    int id;
+    int row;
+    int column;
+};
+
 struct Product {
     int id;
     int weight;
@@ -33,6 +39,7 @@ struct RoundIO {
     int nb_products;
     int nb_warehouses;
     int nb_orders;
+    Drone *drones;
     Product *products;
     Warehouse *warehouses;
     Order *orders;
@@ -41,6 +48,12 @@ struct RoundIO {
         std::cin >> nb_rows;
         std::cin >> nb_columns;
         std::cin >> nb_drones;
+        drones = new Drone[nb_drones];
+        for (int d = 0; d < nb_drones; d++) {
+            drones[p].id = d;
+            drones[p].row = 0;
+            drones[p].column = 0;
+        }
         std::cin >> nb_turns;
         std::cin >> nb_max_payload;
         std::cin >> nb_products;
