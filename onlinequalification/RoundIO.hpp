@@ -15,9 +15,6 @@ struct Product {
 
 struct RoundIO {
 
-    Drone d = new Drone(3,4);
-    d.execute(2);
-    exit();
     int nb_rows;
     int nb_columns;
     int nb_drones;
@@ -40,7 +37,6 @@ struct RoundIO {
             drones[d].id = d;
             drones[d].row = 0;
             drones[d].column = 0;
-            drones[d].available = 1;
         }
         std::cin >> nb_turns;
         std::cin >> nb_max_payload;

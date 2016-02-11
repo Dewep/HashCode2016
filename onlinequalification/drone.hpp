@@ -9,8 +9,8 @@ struct Drone {
     int row;
     int column;
     int status;
-    int flying_start_turn = 0;
-    int flying_end_turn = 0;
+    int flying_start_turn;
+    int flying_end_turn;
     int nb_items;
     int *items;
     Order *order;
@@ -23,7 +23,9 @@ struct Drone {
         row = r;
         column = c;
         order = nullptr;
-        available = 1;
+        status = 0;
+        flying_start_turn = 0;
+        flying_end_turn = 0;
     }
 
     int is_empty() {
@@ -47,38 +49,38 @@ struct Drone {
     std::string execute(int turn) {
         std::string command = "";
         std::ostringstream os;
-        int time = 0;
+        //int time = 0;
         if (status == 0) { //empty drone available
             //Fly to warehouse and load it until the fullest
 
             //get the closest wh
-            Warehouse *wh = gotoClosestWarehouse(warehouses, nb_warehouses, row, column, &time);
+            //Warehouse *wh = gotoClosestWarehouse(warehouses, nb_warehouses, row, column, &time);
             //get the max product type within the drone capacity for this order in this warehouse TODO
-            os << id << " L " << wh.id << " " << 0 << " " << 0;
+            //os << id << " L " << wh.id << " " << 0 << " " << 0;
             //set item and nb_items TODO
-            command = os.str());
+            command = os.str();
             //if the drone still has empty space load other products (stay at the same warehouse) otherwise the drone is ready to go
             status = 1; //ready to fly
         }
         else if (status == 1) { //ready to fly
             os << id << " D " << order->id << " " << 0 << " " << 0;
             //remove item and nb_items TODO
-            command = os.str());
-            flying_start = turn;
-            int distance = distance(row, column, order->row, order->column);
-            flying_end_turn = calc_nb_turn(distance);
-            status = 2 //flying;
+            command = os.str();
+            flying_start_turn = turn;
+            int dist= distance(row, column, order->row, order->column);
+            flying_end_turn = calc_nb_turn(dist);
+            status = 2; //flying;
         }
         else if (status == 2) { //Flying
             if (turn < flying_end_turn) //Keep flying if not arrived at destination
                 status = 2;
             else { //deliver the remaining payload or drone is available
-                if (drone.is_empty())
+                if (is_empty())
                     status = 0;
                 else {
                     os << id << " D " << order->id << " " << 0 << " " << 0;
                     //remove item and nb_items TODO
-                    command = os.str());
+                    command = os.str();
                 }
             }
         }
