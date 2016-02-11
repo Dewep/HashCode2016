@@ -7,8 +7,6 @@
 #include "drone.hpp"
 #include "Product.hpp"
 
-extern RoundIO round_io;
-
 struct RoundIO {
 
     int nb_rows;

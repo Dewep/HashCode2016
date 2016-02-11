@@ -4,6 +4,9 @@
 #include <fstream>
 #include "order.hpp"
 
+int distance(int r1, int c1, int r2, int c2);
+int calc_nb_turn(int distance_to_go);
+
 struct Drone {
     int id;
     int row;
