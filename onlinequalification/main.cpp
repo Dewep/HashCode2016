@@ -1,7 +1,10 @@
 #include "RoundIO.hpp"
 #include "Solution.hpp"
 #include <iostream>
+#include <vector>
 
+std::vector<Warehouse> ClosestWarehouses(Warehouse *warehouses, int nb_warehouses, int *r, int *c);
+std::vector<Warehouse> BestWarehouses(Order order, Warehouse *warehouses, int nb_warehouses, int *r, int *c);
 //int calc_distance
 
 RoundIO round_io;
@@ -22,6 +25,23 @@ int main(int argc, char **argv) {
     std::cerr << "nb_warehouses: " << round_io.nb_warehouses << std::endl;
     std::cerr << "nb_orders: " << round_io.nb_orders << std::endl;
 
+
+    int r = round_io.warehouses[0].row;
+    int c = round_io.warehouses[0].column;
+    std::vector<Warehouse> whs = ClosestWarehouses(round_io.warehouses, round_io.nb_warehouses, &r, &c);
+    for (auto w: whs)
+    {
+        std::cout << "wharehouse r(" << w.row << "), c(" << w.column << ")" << std::endl;
+    }
+    std::cout << "---------------" << std::endl;
+    whs = BestWarehouses(round_io.orders[0], round_io.warehouses, round_io.nb_warehouses, &r, &c);
+    for (auto w: whs)
+    {
+        std::cout << "wharehouse r(" << w.row << "), c(" << w.column << ")" << std::endl;
+    }
+
+
+    return 0;
 
     for (int turn = 0; turn < round_io.nb_turns; turn++)
     {

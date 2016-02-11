@@ -1,13 +1,15 @@
 #include <cmath>
 #include <list>
+#include <vector>
 #include <algorithm>
+#include <map>
 #include "RoundIO.hpp"
 
 int distance(int r1, int c1, int r2, int c2) {
   return sqrt(pow(r1 - r2, 2) + pow(c1 - c2, 2));
 }
 
-/*
+
 class compare
 {
 public:
@@ -15,44 +17,80 @@ public:
     int r;
     int c;
 
-    bool operator () (wharehouse a, wharehouse b)
+    bool operator () (const Warehouse &a, const Warehouse &b)
     {
-      return distance()
+      //return false;
+      return distance(r, c, a.row, a.column) < distance(r, c, b.row, b.column);
     }
 
 };
 
-int compare_whs(wharehouse a, wharehouse b)
+class compare_best
 {
-    return distance()
-}
+public:
 
-Warehouse *gotoBestWarehouse(Warehouse *warehouses, int nb_warehouses, int *r, int *c, int *time) {
-  std::list<Warehouse> whs;
+    int r;
+    int c;
+    Order order;
 
-  for (int i = 1; i < nb_warehouses; ++i) {
-    whs.push_back(wharehouses[i]);
-  }
+    bool check_availability(const Warehouse &a)
+    {
+      std::map<int, int> items;
 
-  std::sort(whs.begin(), whs.end(), )
+      for (int i = 0; i < order.nb_items; i++)
+      {
+        items[order.items[i]] = 0;
+      }
+      for (int i = 0; i < order.nb_items; i++)
+      {
+        items[order.items[i]]++;
+      }
 
-    Warehouse *w = warehouses;
-
-  int pdist = distance(*r, *c, w->row, w->column);
-
-  for (int i = 1; i < nb_warehouses; ++i) {
-    int dist = distance(*r, *c, warehouses[i].row, warehouses[i].column);
-    if (dist < pdist) {
-      w = &warehouses[i];
-      pdist = dist;
+      for (int i = 0; i < order.nb_items; i++)
+      {
+        if (order.items[i] > a.nb_products[i])
+          return false;
+      }
+      return true;
     }
+
+    bool operator () (const Warehouse &a, const Warehouse &b)
+    {
+      // merge order
+      //return false;
+      return (distance(r, c, a.row, a.column) < distance(r, c, b.row, b.column))
+              && check_availability(a);
+    }
+};
+
+
+std::vector<Warehouse> ClosestWarehouses(Warehouse *warehouses, int nb_warehouses, int *r, int *c) {
+  std::vector<Warehouse> whs;
+
+  for (int i = 0; i < nb_warehouses; ++i) {
+    whs.push_back(warehouses[i]);
   }
-  *time += pdist;
-  *r = w->row;
-  *c = w->column;
-  return w;
+  compare comp;
+  comp.r = *r;
+  comp.c = *c;
+  std::sort(whs.begin(), whs.end(), comp);
+  return whs;
 }
-*/
+
+std::vector<Warehouse> BestWarehouses(Order order, Warehouse *warehouses, int nb_warehouses, int *r, int *c) {
+  std::vector<Warehouse> whs;
+
+  for (int i = 0; i < nb_warehouses; ++i) {
+    whs.push_back(warehouses[i]);
+  }
+  compare_best comp;
+  comp.r = *r;
+  comp.c = *c;
+  comp.order = order;
+  std::sort(whs.begin(), whs.end(), comp);
+  return whs;
+}
+
 
 Warehouse *gotoClosestWarehouse(Warehouse *warehouses, int nb_warehouses, int *r, int *c, int *time) {
   Warehouse *w = warehouses;
