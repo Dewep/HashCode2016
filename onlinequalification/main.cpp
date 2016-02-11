@@ -1,10 +1,11 @@
 #include "RoundIO.hpp"
+#include "Solution.hpp"
 #include <iostream>
 
-int main() {
-    // Usage: ./hashcode2016 < data/file.in > data/file.out
+int main(int argc, char **argv) {
+    // Usage: ./hashcode2016 busy_day < data/file.in
     std::ios::sync_with_stdio(false);
-    RoundIO round_io = RoundIO();
+    RoundIO round_io;
 
     std::cerr << "nb_rows: " << round_io.nb_rows << std::endl;
     std::cerr << "nb_columns: " << round_io.nb_columns << std::endl;
@@ -30,7 +31,18 @@ int main() {
         }
     }
 
-    //round_io.addXXXXXXXXXX(1, 2, 3);
+    Solution solution;
+    solution.load(0, 0, 0, 1);
+    solution.load(0, 0, 1, 1);
+    solution.deliver(0, 0, 0, 1);
+    solution.load(0, 1, 2, 1);
+    solution.deliver(0, 0, 2, 1);
+    solution.load(1, 1, 2, 1);
+    solution.deliver(1, 2, 2, 1);
+    solution.load(1, 0, 0, 1);
+    solution.deliver(1, 1, 0, 1);
+    solution.score = 987;
+    solution.save(argc, argv);
 
     return 0;
 }
