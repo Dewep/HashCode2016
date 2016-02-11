@@ -50,9 +50,9 @@ struct RoundIO {
         std::cin >> nb_drones;
         drones = new Drone[nb_drones];
         for (int d = 0; d < nb_drones; d++) {
-            drones[p].id = d;
-            drones[p].row = 0;
-            drones[p].column = 0;
+            drones[d].id = d;
+            drones[d].row = 0;
+            drones[d].column = 0;
         }
         std::cin >> nb_turns;
         std::cin >> nb_max_payload;
