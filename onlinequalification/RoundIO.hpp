@@ -5,11 +5,7 @@
 #include <string>
 #include "Warehouse.hpp"
 #include "drone.hpp"
-
-struct Product {
-    int id;
-    int weight;
-};
+#include "Product.hpp"
 
 struct RoundIO {
     int nb_rows;
