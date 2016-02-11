@@ -51,7 +51,7 @@ struct RoundIO {
         }
         std::cin >> nb_warehouses;
         warehouses = new Warehouse[nb_warehouses];
-        for (int w = 0; w < nb_products; w++) {
+        for (int w = 0; w < nb_warehouses; w++) {
             std::cin >> warehouses[w].row;
             std::cin >> warehouses[w].column;
             warehouses[w].nb_products = new int[nb_products];
@@ -65,6 +65,7 @@ struct RoundIO {
             std::cin >> orders[o].row;
             std::cin >> orders[o].column;
             std::cin >> orders[o].nb_items;
+            orders[o].items = new int[orders[o].nb_items];
             for (int oi = 0; oi < orders[o].nb_items; oi++) {
                 std::cin >> orders[o].items[oi];
             }
