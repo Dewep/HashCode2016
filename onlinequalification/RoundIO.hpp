@@ -7,7 +7,10 @@
 #include "drone.hpp"
 #include "Product.hpp"
 
+extern RoundIO round_io;
+
 struct RoundIO {
+
     int nb_rows;
     int nb_columns;
     int nb_drones;
@@ -30,7 +33,6 @@ struct RoundIO {
             drones[d].id = d;
             drones[d].row = 0;
             drones[d].column = 0;
-            drones[d].available = 1;
         }
         std::cin >> nb_turns;
         std::cin >> nb_max_payload;
@@ -64,5 +66,7 @@ struct RoundIO {
         }
     }
 };
+
+extern RoundIO round_io;
 
 #endif /* !ROUND_IO_HPP_ */

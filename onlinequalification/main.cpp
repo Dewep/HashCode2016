@@ -2,10 +2,16 @@
 #include "Solution.hpp"
 #include <iostream>
 
+//int calc_distance
+
+RoundIO round_io;
+
+//std::list<warehouse> find_warehouse()
+
 int main(int argc, char **argv) {
     // Usage: ./hashcode2016 busy_day < data/file.in
     std::ios::sync_with_stdio(false);
-    RoundIO round_io;
+
 
     std::cerr << "nb_rows: " << round_io.nb_rows << std::endl;
     std::cerr << "nb_columns: " << round_io.nb_columns << std::endl;
@@ -15,7 +21,59 @@ int main(int argc, char **argv) {
     std::cerr << "nb_products: " << round_io.nb_products << std::endl;
     std::cerr << "nb_warehouses: " << round_io.nb_warehouses << std::endl;
     std::cerr << "nb_orders: " << round_io.nb_orders << std::endl;
-    for (int p = 0; p < round_io.nb_products; p++) {
+
+
+    for (int turn = 0; turn < round_io.nb_turns; turn++)
+    {
+        // drone first ou order first ?
+        for (int drone = 0; drone < round_io.nb_drones; drone++)
+        {
+
+
+
+            if (round_io.drones[drone].is_available())
+            {
+                // sort round_io.orders in order to get best score
+                for (int order = 0; order < round_io.nb_orders; order++)
+                {
+
+                }
+            }
+            else
+            {
+                //round_io.drones[drone].execute(turn);
+            }
+
+            //round_io.drones[drone]
+
+        }
+    }
+
+
+/*    for (int turn = 0; turn < round_io.nb_turns; turn++)
+    {
+        // drone first ou order first ?
+        for (int drone = 0; drone < round_io.nb_drones; drone++)
+        {
+            if (round_io.drones[drone].is_available())
+            {
+                // sort round_io.orders in order to get best score
+                for (int order = 0; order < round_io.nb_orders; order++)
+                {
+
+                }
+            }
+            else
+            {
+                round_io.drones[drone].execute(turn);
+            }
+
+            //round_io.drones[drone]
+            
+        }
+    }
+*/
+    /*for (int p = 0; p < round_io.nb_products; p++) {
         std::cerr << "product: " << round_io.products[p].id << " " << round_io.products[p].weight << std::endl;
     }
     for (int w = 0; w < round_io.nb_warehouses; w++) {
@@ -29,7 +87,7 @@ int main(int argc, char **argv) {
         for (int oi = 0; oi < round_io.orders[o].nb_items; oi++) {
             std::cerr << "order_product: " << round_io.orders[o].items[oi] << std::endl;
         }
-    }
+    }*/
 
     Solution solution;
     solution.load(0, 0, 0, 1);
