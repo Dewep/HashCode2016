@@ -3,32 +3,12 @@
 
 #include <iostream>
 #include <string>
-#include <list>
-
-struct Drone {
-    int id;
-    int row;
-    int column;
-    int available;
-};
+#include "Warehouse.hpp"
+#include "drone.hpp"
 
 struct Product {
     int id;
     int weight;
-};
-
-struct Warehouse {
-    int row;
-    int column;
-    int *nb_products;
-};
-
-struct Order {
-    int row;
-    int column;
-    int nb_items;
-    int *items;
-    int available;
 };
 
 struct RoundIO {
