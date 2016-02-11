@@ -2,10 +2,16 @@
 #include "Solution.hpp"
 #include <iostream>
 
+//int calc_distance
+
+RoundIO round_io;
+
+//std::list<warehouse> find_warehouse()
+
 int main(int argc, char **argv) {
     // Usage: ./hashcode2016 busy_day < data/file.in
     std::ios::sync_with_stdio(false);
-    RoundIO round_io;
+
 
     std::cerr << "nb_rows: " << round_io.nb_rows << std::endl;
     std::cerr << "nb_columns: " << round_io.nb_columns << std::endl;
@@ -19,13 +25,54 @@ int main(int argc, char **argv) {
 
     for (int turn = 0; turn < round_io.nb_turns; turn++)
     {
-        for (int drone = 0; drone < round_io.nb_turns; drone++)
+        // drone first ou order first ?
+        for (int drone = 0; drone < round_io.nb_drones; drone++)
         {
+
+
+
+            if (round_io.drones[drone].is_available())
+            {
+                // sort round_io.orders in order to get best score
+                for (int order = 0; order < round_io.nb_orders; order++)
+                {
+
+                }
+            }
+            else
+            {
+                //round_io.drones[drone].execute(turn);
+            }
+
+            //round_io.drones[drone]
+
+        }
+    }
+
+
+/*    for (int turn = 0; turn < round_io.nb_turns; turn++)
+    {
+        // drone first ou order first ?
+        for (int drone = 0; drone < round_io.nb_drones; drone++)
+        {
+            if (round_io.drones[drone].is_available())
+            {
+                // sort round_io.orders in order to get best score
+                for (int order = 0; order < round_io.nb_orders; order++)
+                {
+
+                }
+            }
+            else
+            {
+                round_io.drones[drone].execute(turn);
+            }
+
             //round_io.drones[drone]
             
         }
     }
-
+*/
     /*for (int p = 0; p < round_io.nb_products; p++) {
         std::cerr << "product: " << round_io.products[p].id << " " << round_io.products[p].weight << std::endl;
     }

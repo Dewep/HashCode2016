@@ -1,13 +1,60 @@
 #include <cmath>
 #include <list>
-#include <RoundIO.hpp>
+#include <algorithm>
+#include "RoundIO.hpp"
 
 int distance(int r1, int c1, int r2, int c2) {
-  return sqrt(pow(r1 - r2, 2) + pow(c1 - c2, 2);
+  return sqrt(pow(r1 - r2, 2) + pow(c1 - c2, 2));
 }
 
+/*
+class compare
+{
+public:
 
-    Warehouse *gotoClosestWarehouse(Warehouses *warehouses, int nb_warehouses, int r, int c, int *time) {
+    int r;
+    int c;
+
+    bool operator () (wharehouse a, wharehouse b)
+    {
+      return distance()
+    }
+
+};
+
+int compare_whs(wharehouse a, wharehouse b)
+{
+    return distance()
+}
+
+Warehouse *gotoBestWarehouse(Warehouse *warehouses, int nb_warehouses, int *r, int *c, int *time) {
+  std::list<Warehouse> whs;
+
+  for (int i = 1; i < nb_warehouses; ++i) {
+    whs.push_back(wharehouses[i]);
+  }
+
+  std::sort(whs.begin(), whs.end(), )
+
+    Warehouse *w = warehouses;
+
+  int pdist = distance(*r, *c, w->row, w->column);
+
+  for (int i = 1; i < nb_warehouses; ++i) {
+    int dist = distance(*r, *c, warehouses[i].row, warehouses[i].column);
+    if (dist < pdist) {
+      w = &warehouses[i];
+      pdist = dist;
+    }
+  }
+  *time += pdist;
+  *r = w->row;
+  *c = w->column;
+  return w;
+}
+*/
+
+Warehouse *gotoClosestWarehouse(Warehouse *warehouses, int nb_warehouses, int *r, int *c, int *time) {
   Warehouse *w = warehouses;
   int pdist = distance(*r, *c, w->row, w->column);
   
@@ -24,7 +71,7 @@ int distance(int r1, int c1, int r2, int c2) {
   return w;
 }
 
-int getScore(Drone *drone, Order *order, Warehouse *warehouses, int nb_warehouses, Products *products, int nb_products) {
+int getScore(Drone *drone, Order *order, Warehouse *warehouses, int nb_warehouses, Product *products, int nb_products) {
   int time = 0;
   int drone_r = drone->row;
   int drone_c = drone->column;
