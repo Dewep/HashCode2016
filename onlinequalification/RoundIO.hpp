@@ -2,14 +2,14 @@
 # define ROUND_IO_HPP_
 
 #include <iostream>
-#include <list>
 #include <string>
-#include <sstream>
+#include <list>
 
 struct Drone {
     int id;
     int row;
     int column;
+    int available;
 };
 
 struct Product {
@@ -28,6 +28,7 @@ struct Order {
     int column;
     int nb_items;
     int *items;
+    int available;
 };
 
 struct RoundIO {
@@ -53,6 +54,7 @@ struct RoundIO {
             drones[d].id = d;
             drones[d].row = 0;
             drones[d].column = 0;
+            drones[d].available = 1;
         }
         std::cin >> nb_turns;
         std::cin >> nb_max_payload;
@@ -82,21 +84,8 @@ struct RoundIO {
             for (int oi = 0; oi < orders[o].nb_items; oi++) {
                 std::cin >> orders[o].items[oi];
             }
+            orders[o].available = 1;
         }
-    }
-
-    /*std::list<std::string> commands;
-    void addXXXXXXXXXX(int a, int b, int c) {
-        std::ostringstream os;
-        os << "PAINT_SQUARE " << a << " " << b << " " << c;
-        commands.push_back(os.str());
-    }*/
-    int writeOutput() {
-        /*std::cout << commands.size() << std::endl;
-        for (auto it = commands.begin(); it != commands.end(); ++it) {
-            std::cout << *it << std::endl;
-        }*/
-        return 0;
     }
 };
 

@@ -32,5 +32,5 @@ int main() {
 
     //round_io.addXXXXXXXXXX(1, 2, 3);
 
-    return round_io.writeOutput();
+    return 0;
 }
