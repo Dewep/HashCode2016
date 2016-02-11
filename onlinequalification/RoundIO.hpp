@@ -6,12 +6,18 @@
 #include "Warehouse.hpp"
 #include "drone.hpp"
 
+extern RoundIO round_io;
+
 struct Product {
     int id;
     int weight;
 };
 
 struct RoundIO {
+
+    Drone d = new Drone(3,4);
+    d.execute(2);
+    exit();
     int nb_rows;
     int nb_columns;
     int nb_drones;

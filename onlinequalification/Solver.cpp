@@ -7,6 +7,10 @@ int distance(int r1, int c1, int r2, int c2) {
   return sqrt(pow(r1 - r2, 2) + pow(c1 - c2, 2));
 }
 
+int calc_nb_turn(distance_to_go) {
+    return ceil(distance_to_go);
+}
+
 /*
 class compare
 {
@@ -57,13 +61,13 @@ Warehouse *gotoBestWarehouse(Warehouse *warehouses, int nb_warehouses, int *r, i
 Warehouse *gotoClosestWarehouse(Warehouse *warehouses, int nb_warehouses, int *r, int *c, int *time) {
   Warehouse *w = warehouses;
   int pdist = distance(*r, *c, w->row, w->column);
-  
+
   for (int i = 1; i < nb_warehouses; ++i) {
     int dist = distance(*r, *c, warehouses[i].row, warehouses[i].column);
     if (dist < pdist) {
       w = &warehouses[i];
       pdist = dist;
-    } 
+    }
   }
   *time += pdist;
   *r = w->row;
@@ -80,7 +84,7 @@ int getScore(Drone *drone, Order *order, Warehouse *warehouses, int nb_warehouse
   for (int i = 0; i < order->nb_items; ++i) {
     items.push_front(order->items[i]);
   }
-  
+
   while (!items.empty()) {
     hand = gotoClosestWarehouse(warehouses, nb_warehouses, &drone_r, &drone_c, &time);
     // fill drone (items, hand, &time)
