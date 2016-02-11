@@ -70,6 +70,6 @@ struct RoundIO {
     }
 };
 
-RoundIO io;
+extern RoundIO round_io;
 
 #endif /* !ROUND_IO_HPP_ */
