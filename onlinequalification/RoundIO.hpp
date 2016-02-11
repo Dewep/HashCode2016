@@ -64,7 +64,6 @@ struct RoundIO {
         }
     }
 };
-extern RoundIO round_io;
 
 extern RoundIO round_io;
 
