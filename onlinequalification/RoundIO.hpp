@@ -6,6 +6,7 @@
 #include "Warehouse.hpp"
 #include "drone.hpp"
 
+
 struct Product {
     int id;
     int weight;
@@ -68,5 +69,7 @@ struct RoundIO {
         }
     }
 };
+
+RoundIO io;
 
 #endif /* !ROUND_IO_HPP_ */
